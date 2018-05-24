@@ -34,13 +34,10 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
     private ClientThread clientThread = null;
 
     private ConnectButtonClickListener connectButtonClickListener = new ConnectButtonClickListener();
-    private EditText clientHourEditText;
-    private EditText clientMinEditText;
-    private Button clientSetButton;
-    private Button clientResetButton;
-    private Button clientPollButton;
-    private String command;
-    private TimerInformation timerInformation;
+    private Button getClientLookupButton;
+    private EditText clientWordEditText;
+
+    //private TimerInformation timerInformation;
 
     private class ConnectButtonClickListener implements Button.OnClickListener {
 
@@ -61,8 +58,8 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
 
     }
 
-    private TimerButtonClickListener timerButtonClickListener = new TimerButtonClickListener();
-    private class TimerButtonClickListener implements Button.OnClickListener {
+    private LookupButtonClickListener lookupButtonClickListener = new LookupButtonClickListener();
+    private class LookupButtonClickListener implements Button.OnClickListener {
 
         @Override
         public void onClick(View view) {
@@ -78,37 +75,18 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
                 return;
             }
 
-            String hour = clientHourEditText.getText().toString();
-            String minute = clientMinEditText.getText().toString();
+            String word = clientWordEditText.getText().toString();
 
-            if (hour == null || hour.isEmpty() ||
-                    minute == null || minute.isEmpty()) {
+            if (word == null || word.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "[MAIN ACTIVITY] Parameters from client (city / information type) should be filled", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             timerTextView.setText(Constants.EMPTY_STRING);
 
-            switch(view.getId()) {
-                case R.id.set_time_button:
-                    command = new String("set");
-                    timerInformation = new TimerInformation(hour, minute);
-                    break;
-                case R.id.reset_time_button:
-                    command = new String("reset");
-                    clientHourEditText.setText(null);
-                    clientMinEditText.setText(null);
-                    break;
-                case R.id.poll_time_button:
-                    command = new String("poll");
-                    break;
-                default:
-                    command = new String("");
-            }
 
             clientThread = new ClientThread(
-                    command, timerInformation, false,
-                    clientAddress, Integer.parseInt(clientPort), timerTextView
+                    word, clientAddress, Integer.parseInt(clientPort), timerTextView
             );
             clientThread.start();
         }
@@ -127,20 +105,11 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
 
         clientAddressEditText = (EditText)findViewById(R.id.client_address_edit_text);
         clientPortEditText = (EditText)findViewById(R.id.client_port_edit_text);
-        clientHourEditText = (EditText)findViewById(R.id.hour_edit_text);
-        clientMinEditText = (EditText)findViewById(R.id.minute_edit_text);
-        clientSetButton = (Button)findViewById(R.id.set_time_button);
-        clientResetButton = (Button)findViewById(R.id.reset_time_button);
-        clientPollButton = (Button)findViewById(R.id.poll_time_button);
+        clientWordEditText = (EditText)findViewById(R.id.word_edit_text);
+        getClientLookupButton = (Button) findViewById(R.id.lookup_button);
 
-        clientSetButton.setOnClickListener(timerButtonClickListener);
-        clientResetButton.setOnClickListener(timerButtonClickListener);
-        clientPollButton.setOnClickListener(timerButtonClickListener);
+        getClientLookupButton.setOnClickListener(lookupButtonClickListener);
 
-        //cityEditText = (EditText)findViewById(R.id.city_edit_text);
-        //informationTypeSpinner = (Spinner)findViewById(R.id.information_type_spinner);
-        //getWeatherForecastButton = (Button)findViewById(R.id.get_weather_forecast_button);
-        //getWeatherForecastButton.setOnClickListener(getWeatherForecastButtonClickListener);
         timerTextView = (TextView)findViewById(R.id.weather_forecast_text_view);
     }
 

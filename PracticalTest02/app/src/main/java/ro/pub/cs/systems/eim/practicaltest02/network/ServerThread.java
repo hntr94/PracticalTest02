@@ -17,7 +17,7 @@ public class ServerThread extends Thread {
     private int port = 0;
     private ServerSocket serverSocket = null;
 
-    //private HashMap<String, TimerInformation> data = null;
+    private HashMap<String, String> dictionary = null;
     String data = null;
     TimerInformation timer = null;
 
@@ -31,7 +31,7 @@ public class ServerThread extends Thread {
                 ioException.printStackTrace();
             }
         }
-        //this.data = new HashMap<>();
+        this.dictionary = new HashMap<>();
     }
 
     public void setPort(int port) {
@@ -50,25 +50,13 @@ public class ServerThread extends Thread {
         return serverSocket;
     }
 
-//    public synchronized void setData(String hour) {
-//        //this.data.put(city, timerInformation);
-//        data = new String(hour);
-//    }
-
-    /*public synchronized HashMap<String, TimerInformation> getData() {
-        return data;
-    }*/
-
-//    public synchronized  String getData() {
-//        return data;
-//    }
-
-    public synchronized void setData(String hour, String minute) {
-        timer = new TimerInformation(hour, minute);
+    public synchronized void setData(String word, String definition) {
+        this.dictionary.put(word, definition);
+        //data = new String(hour);
     }
 
-    public synchronized TimerInformation getData() {
-        return timer;
+    public synchronized HashMap<String, String> getData() {
+        return dictionary;
     }
 
     @Override

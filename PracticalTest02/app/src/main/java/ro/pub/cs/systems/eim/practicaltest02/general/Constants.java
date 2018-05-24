@@ -6,7 +6,7 @@ public interface Constants {
 
     final public static boolean DEBUG = true;
 
-    final public static String WEB_SERVICE_ADDRESS = "http://ipadstopwatch.com/clock-fullscreen.html";
+    final public static String WEB_SERVICE_ADDRESS = "http://services.aonaware.com/DictService/DictService.asmx/Define";
 
     final public static String HOUR = "hour";
     final public static String MINUTE = "minute";
@@ -20,7 +20,9 @@ public interface Constants {
 
     final public static String EMPTY_STRING = "";
 
-    final public static String QUERY_ATTRIBUTE = "query";
+    final public static String QUERY_ATTRIBUTE = "word";
+    final public static String HEADER_START_ATTRIBUTE = "<WordDefinition>";
+    final public static String HEADER_END_ATTRIBUTE = "</WordDefinition>";
 
     final public static String SCRIPT_TAG = "script";
     final public static String SEARCH_KEY = "wui.api_data =\n";

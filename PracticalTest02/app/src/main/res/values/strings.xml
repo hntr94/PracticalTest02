@@ -11,6 +11,8 @@
     <string name="get_weather_forecast">Get Weather Forecast</string>
     <string name="hour">hour</string>
     <string name="minute">minute</string>
+    <string name="insert">Insert word</string>
+    <string name="lookup">Lookup</string>
     <string-array name="information_types">
         <item>temperature</item>
         <item>wind_speed</item>

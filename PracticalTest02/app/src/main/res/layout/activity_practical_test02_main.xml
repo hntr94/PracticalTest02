@@ -101,49 +101,29 @@
         android:columnCount="2">
 
         <Button
-            android:id="@+id/set_time_button"
+            android:id="@+id/lookup_button"
             android:layout_width="121dp"
             android:layout_height="86dp"
             android:layout_column="1"
             android:layout_gravity="center"
             android:layout_row="0"
             android:layout_rowSpan="2"
-            android:text="Set" />
+            android:text="@string/lookup" />
 
         <EditText
-            android:id="@+id/hour_edit_text"
+            android:id="@+id/word_edit_text"
             android:layout_width="192dp"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="0"
-            android:hint="@string/hour" />
-
-        <EditText
-            android:id="@+id/minute_edit_text"
-            android:layout_width="191dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:hint="@string/minute" />
+            android:hint="@string/insert" />
 
     </GridLayout>
-
-    <Button
-        android:id="@+id/reset_time_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset" />
-
-    <Button
-        android:id="@+id/poll_time_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Poll" />
 
     <TextView
         android:id="@+id/weather_forecast_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="214dp"
         android:maxLines="10" />
 
     <ScrollView

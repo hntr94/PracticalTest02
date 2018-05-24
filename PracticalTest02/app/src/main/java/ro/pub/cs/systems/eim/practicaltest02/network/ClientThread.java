@@ -14,27 +14,22 @@ import ro.pub.cs.systems.eim.practicaltest02.model.TimerInformation;
 
 public class ClientThread extends Thread {
 
-    private String hour;
-    private String minute;
-    private boolean active;
     private String address;
     private int port;
-    private String command;
     private TextView timerTextView;
-    TimerInformation timeInformation;
+    //TimerInformation timeInformation;
+    private String word;
 
     private Socket socket;
 
 
-    public ClientThread(String command, TimerInformation timeInformation, boolean active, String address, int port, TextView timerTextView) {
-        this.active = active;
-        //this.hour = hour;
-        //this.minute = minute;
+    public ClientThread(String word, String address, int port, TextView timerTextView) {
+
         this.port = port;
         this.address = address;
-        this.command = command;
+        this.word = word;
         this.timerTextView = timerTextView;
-        this.timeInformation = timeInformation;
+        //this.timeInformation = timeInformation;
 
     }
 
@@ -53,21 +48,17 @@ public class ClientThread extends Thread {
                 return;
             }
 
-            printWriter.println(command);
-            printWriter.flush();
-            printWriter.println(timeInformation.getHour());
-            printWriter.flush();
-            printWriter.println(timeInformation.getMinute());
+            printWriter.println(word);
             printWriter.flush();
 
-            String timerInformation;
-            while ((timerInformation = bufferedReader.readLine()) != null) {
-                Log.d(Constants.TAG,"[ClientThread] " + timerInformation);
-                final String finalizedTimerInformation = timerInformation;
+            String wordInformation;
+            while ((wordInformation = bufferedReader.readLine()) != null) {
+                Log.d(Constants.TAG,"[ClientThread] " + wordInformation);
+                final String finalizedWordInformation = wordInformation;
                timerTextView.post(new Runnable() {
                    @Override
                     public void run() {
-                       timerTextView.setText(finalizedTimerInformation);
+                       timerTextView.append(finalizedWordInformation);
                    }
                 });
             }
